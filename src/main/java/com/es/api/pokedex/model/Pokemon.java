@@ -17,7 +17,7 @@ public class Pokemon {
     @JoinColumn(name = "id_tipo")
     private Tipo tipo;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "pokemon", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ataque> ataques;
 
     @Id

@@ -14,6 +14,10 @@ public class Ataque {
     @JoinColumn(name = "id_tipo")
     private Tipo tipo;
 
+    @ManyToOne
+    @JoinColumn(name = "id_pokemon")
+    private Pokemon pokemon;
+
     @Id
     private String nombre;
 
@@ -56,5 +60,13 @@ public class Ataque {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Pokemon getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(Pokemon pokemon) {
+        this.pokemon = pokemon;
     }
 }
