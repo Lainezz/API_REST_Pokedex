@@ -11,26 +11,26 @@ import java.util.List;
 public class PokemonController {
 
 
-    @GetMapping("/{id}") // URI -> localhost:8080/pokemon/{id}
+    @GetMapping("/{id}") // URI -> GET localhost:8080/pokemon/{id}
     public PokemonDTO getById(
             @PathVariable String id
     ) {
         return null;
     }
 
-    @GetMapping("/") // URI -> localhost:8080/pokemon/
+    @GetMapping("/") // URI -> GET localhost:8080/pokemon/
     public List<PokemonDTO> getAll() {
         return null;
     }
 
-    @PostMapping("/")
+    @PostMapping("/") // URI -> POST localhost:8080/pokemon/
     public PokemonDTO insert(
             @RequestBody PokemonDTO pokemonDTO
     ) {
         return null;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") // URI -> PUT localhost:8080/pokemon/{id}
     public PokemonDTO update(
             @RequestBody PokemonDTO pokemonDTO,
             @PathVariable String id
