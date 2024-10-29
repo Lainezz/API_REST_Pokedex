@@ -24,7 +24,7 @@ public class PokemonController {
 
     @GetMapping("/") // URI -> GET localhost:8080/pokemon/
     public List<PokemonDTO> getAll() {
-        return null;
+        return service.getAll();
     }
 
     @PostMapping("/") // URI -> POST localhost:8080/pokemon/

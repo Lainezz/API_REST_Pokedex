@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,7 +45,33 @@ public class PokemonService {
     }
 
     public List<PokemonDTO> getAll() {
-        return null;
+
+        List<PokemonDTO> listaDeDTOs = new ArrayList<>();
+
+        List<Pokemon> listaPok = repository.findAll();
+
+        for (Pokemon p: listaPok) {
+            PokemonDTO pokemonDTO = new PokemonDTO();
+            pokemonDTO.setNombre(p.getNombre());
+            pokemonDTO.setVida(p.getVida());
+
+            TipoDTO tipoDTO = new TipoDTO();
+            tipoDTO.setNombre(p.getTipo().getTipo());
+            pokemonDTO.setTipo(tipoDTO);
+
+            AtaqueDTO ataqueDTO = new AtaqueDTO();
+            TipoDTO tipoAtaqueDTO = new TipoDTO();
+            tipoAtaqueDTO.setNombre(p.getAtaques().get(0).getTipo().getTipo());
+            ataqueDTO.setNombre(p.getAtaques().get(0).getNombre());
+            ataqueDTO.setEspecial(p.getAtaques().get(0).isEspecial());
+            ataqueDTO.setDanioBase(p.getAtaques().get(0).getDanioBase());
+            ataqueDTO.setTipo(tipoAtaqueDTO);
+            pokemonDTO.setAtaque(ataqueDTO);
+
+            listaDeDTOs.add(pokemonDTO);
+        }
+
+        return listaDeDTOs;
     }
 
     public PokemonDTO insert(PokemonDTO pokemonDTO) {
