@@ -1,7 +1,6 @@
 package com.es.api.pokedex.controller;
 
 import com.es.api.pokedex.dto.PokemonDTO;
-import com.es.api.pokedex.model.Pokemon;
 import com.es.api.pokedex.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
