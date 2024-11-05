@@ -18,7 +18,7 @@ public class Pokemon {
     @JoinColumn(name = "id_tipo")
     private Tipo tipo;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(
             name = "pokemon_ataque",
             joinColumns = @JoinColumn(name = "id_pokemon"),

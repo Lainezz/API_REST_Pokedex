@@ -41,4 +41,15 @@ public class PokemonController {
         return null;
     }
 
+    @DeleteMapping("/{id}")
+    public PokemonDTO delete(
+          @PathVariable String id
+    ) {
+        if(id == null || id.isEmpty()) return null;
+
+        PokemonDTO p = service.delete(id);
+
+        return p;
+    }
+
 }

@@ -5,6 +5,7 @@ import com.es.api.pokedex.dto.PokemonDTO;
 import com.es.api.pokedex.dto.TipoDTO;
 import com.es.api.pokedex.model.Pokemon;
 import com.es.api.pokedex.repository.PokemonRepositoryApi;
+import com.es.api.pokedex.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -80,5 +81,27 @@ public class PokemonService {
 
     public PokemonDTO update(PokemonDTO pokemonDTO, String id) {
         return null;
+    }
+
+    public PokemonDTO delete(String id) {
+
+        // Parseo el id a Long
+        Long idL = 0L;
+        try {
+            idL = Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            System.out.println("Error al parsear el id");
+            return null;
+        }
+
+        // Compruebo que el pokemon existe en la BDD
+        Pokemon p = repository.findById(idL).orElse(null);
+
+        if(p == null) {
+            return null;
+        } else {
+            repository.delete(p);
+            return Mapper.entityToDTO(p);
+        }
     }
 }
