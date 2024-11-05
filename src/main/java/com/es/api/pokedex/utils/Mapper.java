@@ -7,6 +7,9 @@ import com.es.api.pokedex.model.Ataque;
 import com.es.api.pokedex.model.Pokemon;
 import com.es.api.pokedex.model.Tipo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Mapper {
 
     public static PokemonDTO entityToDTO(Pokemon p) {
@@ -27,13 +30,13 @@ public class Mapper {
         return pokemonDTO;
     }
 
-    public static Pokemon entityToDTO(PokemonDTO pDto) {
+    public static Pokemon DTOToEntity(PokemonDTO pDto) {
         Pokemon p = new Pokemon();
         p.setNombre(pDto.getNombre());
         p.setVida(pDto.getVida());
 
         Tipo tipoAtaque = new Tipo();
-        tipoAtaque.setTipo(pDto.getTipo().getNombre());
+        tipoAtaque.setTipo(pDto.getAtaque().getTipo().getNombre());
 
         Ataque a = new Ataque();
         a.setNombre(pDto.getAtaque().getNombre());
@@ -41,7 +44,9 @@ public class Mapper {
         a.setDanioBase(pDto.getAtaque().getDanioBase());
         a.setTipo(tipoAtaque);
 
-        p.getAtaques().add(a);
+        List<Ataque> ataques = new ArrayList<>();
+        ataques.add(a);
+        p.setAtaques(ataques);
 
         Tipo tipoPokemon = new Tipo();
         tipoPokemon.setTipo(pDto.getTipo().getNombre());

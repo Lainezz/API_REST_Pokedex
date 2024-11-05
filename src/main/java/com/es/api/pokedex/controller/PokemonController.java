@@ -30,7 +30,7 @@ public class PokemonController {
     public PokemonDTO insert(
             @RequestBody PokemonDTO pokemonDTO
     ) {
-        return null;
+        return service.insert(pokemonDTO);
     }
 
     @PutMapping("/{id}") // URI -> PUT localhost:8080/pokemon/{id}
