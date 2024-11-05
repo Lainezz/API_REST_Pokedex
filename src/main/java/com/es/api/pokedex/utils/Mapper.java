@@ -3,7 +3,9 @@ package com.es.api.pokedex.utils;
 import com.es.api.pokedex.dto.AtaqueDTO;
 import com.es.api.pokedex.dto.PokemonDTO;
 import com.es.api.pokedex.dto.TipoDTO;
+import com.es.api.pokedex.model.Ataque;
 import com.es.api.pokedex.model.Pokemon;
+import com.es.api.pokedex.model.Tipo;
 
 public class Mapper {
 
@@ -24,4 +26,33 @@ public class Mapper {
         pokemonDTO.setAtaque(ataqueDTO);
         return pokemonDTO;
     }
+
+    public static Pokemon entityToDTO(PokemonDTO pDto) {
+        Pokemon p = new Pokemon();
+        p.setNombre(pDto.getNombre());
+        p.setVida(pDto.getVida());
+
+        Tipo tipoAtaque = new Tipo();
+        tipoAtaque.setTipo(pDto.getTipo().getNombre());
+
+        Ataque a = new Ataque();
+        a.setNombre(pDto.getAtaque().getNombre());
+        a.setEspecial(pDto.getAtaque().isEspecial());
+        a.setDanioBase(pDto.getAtaque().getDanioBase());
+        a.setTipo(tipoAtaque);
+
+        p.getAtaques().add(a);
+
+        Tipo tipoPokemon = new Tipo();
+        tipoPokemon.setTipo(pDto.getTipo().getNombre());
+
+        p.setTipo(tipoPokemon);
+
+        return p;
+
+    }
+
+
+
+
 }

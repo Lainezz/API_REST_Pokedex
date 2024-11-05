@@ -12,7 +12,8 @@ public class Ataque {
     private int danioBase;
     @Column(nullable = false)
     private boolean isEspecial;
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "id_tipo")
     private Tipo tipo;
 
